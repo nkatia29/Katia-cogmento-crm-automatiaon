@@ -1,4 +1,10 @@
 package com.cogmento.pages;
 
-public class Deals {
+import org.openqa.selenium.WebDriver;
+import org.testng.asserts.SoftAssert;
+
+public class Deals extends HomePage{
+    public Deals(WebDriver driver, SoftAssert softAssert) {
+        super(driver, softAssert);
+    }
 }

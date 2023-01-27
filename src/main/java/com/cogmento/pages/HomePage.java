@@ -1,8 +1,10 @@
 package com.cogmento.pages;
 
+import com.beust.ah.A;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,16 +12,10 @@ import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 
-public class HomePage {
-    private WebDriver driver;
-    private SoftAssert softAssert;
-    private WebDriverWait wait;
+public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver, SoftAssert softAssert){
-        this.driver = driver;
-        this.softAssert = softAssert;
-        this.wait = new WebDriverWait(this.driver, Duration.ofSeconds(20));
-        PageFactory.initElements(driver, this);
+        super(driver, softAssert);
     }
 
     @FindBy(xpath = "//div[@class='header item']")
@@ -64,5 +60,13 @@ public class HomePage {
         driver.findElement(By.xpath(settingNavigation + "Tools']")).click();
     }
 
+
+    @FindBy(id = "main-nav")
+    protected WebElement leftNavBarMenu;
+
+    protected void navigate(String page){
+        actions.moveToElement(leftNavBarMenu).build().perform();
+        driver.findElement(By.xpath("//div[@class='menu-item-wrapper']/a[@href='/"+page+"']")).click();
+    }
 
 }

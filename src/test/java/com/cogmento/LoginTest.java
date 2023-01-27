@@ -8,21 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class LoginTest {
-
-    private static WebDriver driver;
-    private SoftAssert softAssert;
-    @BeforeMethod
-    public void setUp(){
-        driver = Driver.getDriver();
-        softAssert = new SoftAssert();
-    }
-
-    @AfterMethod
-    public void tearDown(){
-        Driver.quitDriver();
-        softAssert.assertAll();
-    }
+public class LoginTest extends BaseTest{
 
     @Test
     public void loginTestPositive(){

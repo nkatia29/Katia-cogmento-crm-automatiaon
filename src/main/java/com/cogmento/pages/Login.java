@@ -10,17 +10,10 @@ import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 
-public class Login {
-
-    private WebDriver driver;
-    private SoftAssert softAssert;
-    private WebDriverWait wait;
+public class Login extends BasePage{
 
     public Login(WebDriver driver, SoftAssert softAssert){
-        this.driver = driver;
-        this.softAssert = softAssert;
-        this.wait = new WebDriverWait(this.driver, Duration.ofSeconds(20));
-        PageFactory.initElements(driver, this);
+        super(driver, softAssert);
     }
 
     //Web elements
