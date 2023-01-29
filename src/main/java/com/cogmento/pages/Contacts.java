@@ -1,5 +1,6 @@
 package com.cogmento.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,7 +13,7 @@ public class Contacts extends HomePage{
         super(driver, softAssert);
     }
 
-    @FindBy(xpath = "//a[@href='/contacts/new']")
+    @FindBy(xpath = "//button[text()='Save']")
     protected WebElement createContactButton;
 
     @FindBy(name = "first_name")
@@ -31,6 +32,11 @@ public class Contacts extends HomePage{
     @FindBy(xpath = "//input[@placeholder='Email address']")
     protected WebElement emailInput;
 
+    @FindBy(xpath = "//input[@placeholder='Personal email, Business, Alt...']")
+    protected WebElement emailTypeInput;
+
+    public void setDescriptionTextArea(WebElement descriptionTextArea) {
+    }
 
     @FindBy(xpath = "//label[text()='Status']/following-sibling::div")
     protected WebElement statusDropDown;
@@ -45,7 +51,7 @@ public class Contacts extends HomePage{
     protected WebElement socialChannelAddBtn;
 
     @FindBy(name = "address")
-    protected WebElement addressInput;
+    protected WebElement streetAddressInput;
 
     @FindBy(name = "city")
     protected WebElement cityInput;
@@ -68,10 +74,10 @@ public class Contacts extends HomePage{
     @FindBy(xpath = "//label[text()='Referred By']/following-sibling::div/input")
     protected WebElement referredByInput;
 
-    @FindBy(xpath = "//label[text()='Do not Call']/following-sibling::div/input")
+    @FindBy(xpath = "//label[text()='Do not Call']/following-sibling::div")
     protected WebElement doNotCallRadioBtn;
 
-    @FindBy(xpath = "//label[text()='Do not Email']/following-sibling::div/input")
+    @FindBy(xpath = "//label[text()='Do not Email']/following-sibling::div")
     protected WebElement doNotEmailRadioBtn;
 
     @FindBy(name = "identifier")
@@ -80,7 +86,7 @@ public class Contacts extends HomePage{
     @FindBy(name = "last_name")
     protected WebElement lastNameInput;
 
-    @FindBy(name = "company")
+    @FindBy(xpath = "//div[@name='company']/input")
     protected WebElement companyInput;
 
     @FindBy(xpath = "//label[@for='tags']/div/input")
@@ -95,7 +101,7 @@ public class Contacts extends HomePage{
     @FindBy(xpath = "//div[@name='timezone']/input")
     protected WebElement timeZoneInput;
 
-    @FindBy(xpath = "//div[@name='hint']/div[2]")
+    @FindBy(xpath = "//div[@name='hint']/div[1]")
     protected WebElement phoneRegionDropDown;
 
     @FindBy(xpath = "//input[@placeholder='Number']")
@@ -117,13 +123,13 @@ public class Contacts extends HomePage{
     protected WebElement sourceDropDown;
 
 
-    @FindBy(xpath = "//label[text()='Do not Text']/following-sibling::div/input")
+    @FindBy(xpath = "//label[text()='Do not Text']/following-sibling::div")
     protected WebElement doNotTextRadioBtn;
 
     @FindBy(xpath = "//input[@placeholder='Day' and @name='day']")
     protected WebElement birthDayInput;
 
-    @FindBy(xpath = "//div[text()='Month']")
+    @FindBy(xpath = "//div[@name='month']")
     protected WebElement birthMonthDropDown;
 
     @FindBy(xpath = "//input[@placeholder='Year' and @name='year']")
@@ -141,6 +147,79 @@ public class Contacts extends HomePage{
     public void createContact(HashMap<String,String> data) {
         navigate("contacts");
         softAssert.assertTrue(createContactButton.isEnabled(), "Create button is not enabled");
+        createContactButton.click();
+
+        firstNameInput.sendKeys(data.get("firstname"));
+        lastNameInput.sendKeys(data.get("lastname"));
+        middleNameInput.sendKeys(data.get("middlename"));
+        companyInput.sendKeys(data.get("company"));
+        if (!data.get("access").equals("Public")){
+            accesBtn.click();
+        }
+
+        tagsInput.sendKeys(data.get("tags"));
+        emailInput.sendKeys(data.get("email"));
+        emailTypeInput.sendKeys(data.get("typeOfEmail"));
+
+        categoryDropDown.click();
+        categoryDropDown.findElement(By.xpath("//div/div/span[text()='"+ data.get("category")+"']")).click();
+        statusDropDown.click();
+        statusDropDown.findElement(By.xpath("//div/div/span[text()='"+data.get("status")+"']")).click();
+
+        descriptionTextArea.sendKeys(data.get("description"));
+
+        socialChannelDropDown.click();
+        socialChannelDropDown.findElement(By.xpath("//div[@role='option']/span[text()='"+data.get("socialChannel")+"']")).click();
+        socialChannelInput.sendKeys(data.get("channelLink"));
+
+        streetAddressInput.sendKeys(data.get("street"));
+        cityInput.sendKeys(data.get("city"));
+        stateIput.sendKeys(data.get("state/county"));
+        zipInput.sendKeys(data.get("zip"));
+
+        countryDropDown.click();
+        countryDropDown.findElement(By.xpath("//div[@role='option']/span[text()='"+data.get("country")+"']")).click();
+
+        phoneRegionDropDown.click();
+        driver.findElement(By.xpath("//div[@name='hint']/div[1]/following-sibling::div/div/span[text()='"+data.get("region")+"']")).click();
+
+        phoneNumberInput.sendKeys(data.get("number"));
+        phoneType.sendKeys(data.get("phoneType"));
+
+        positionInput.sendKeys(data.get("position"));
+        departmentInput.sendKeys(data.get("department"));
+
+        supervisorInput.sendKeys(data.get("supervisor"));
+        assistantInput.sendKeys(data.get("assistant"));
+
+        referredByInput.sendKeys(data.get("referredBy"));
+        sourceDropDown.click();
+        sourceDropDown.findElement(By.xpath("//div[@role='option']/span[text()='"+data.get("source")+"']")).click();
+
+        if (data.get("call?").equals("yes")){
+            doNotCallRadioBtn.click();
+        }
+
+        if (data.get("text?").equals("yes")){
+            doNotTextRadioBtn.click();
+        }
+
+        if (data.get("email?").equals("yes")){
+            doNotEmailRadioBtn.click();
+        }
+
+        birthDayInput.sendKeys(data.get("birthday"));
+        birthMonthDropDown.click();
+        birthMonthDropDown.findElement(By.xpath("//div[@role='option']/span[text()='"+data.get("birthmonth")+"']")).click();
+
+        birthYearInput.sendKeys(data.get("birthyear"));
+
+        identifierInput.sendKeys(data.get("identifier"));
+
+        imagePathInput.sendKeys(data.get("imagePath"));
+
+        softAssert.assertTrue(createContactButton.isEnabled(), "Create Customer is not enabled");
+        createContactButton.click();
 
     }
 
