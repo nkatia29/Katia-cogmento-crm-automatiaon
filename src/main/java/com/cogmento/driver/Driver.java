@@ -45,6 +45,7 @@ public class Driver {
         }
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(pageLoadTime));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
+        driver.manage().window().maximize();
         return driver;
     }
     public static void quitDriver(){
