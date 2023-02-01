@@ -1,3 +1,5 @@
+package com.cogmento;
+
 import com.cogmento.BaseTest;
 import com.cogmento.pages.Deals;
 import com.cogmento.pages.Login;
