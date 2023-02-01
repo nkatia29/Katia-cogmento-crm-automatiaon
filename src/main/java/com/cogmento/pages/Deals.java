@@ -1,9 +1,6 @@
 package com.cogmento.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.SourceType;
@@ -84,7 +81,7 @@ public class Deals extends HomePage {
 
     }
 
-    public void fillOutDealPipeline(HashMap<String, String> data){
+    public void fillOutDealPipeline(HashMap<String, String> data)  {
         softAssert.assertTrue(pipelineBtn.isEnabled(), "pipeline btn is not enabled");
         pipelineBtn.click();
         selectFields.click();
@@ -94,7 +91,12 @@ public class Deals extends HomePage {
         saveFilterCheckBox.isSelected();
         softAssert.assertTrue(createBtn.isEnabled(), "create btn is not enabled");
         createBtn.click();
+    }
 
+    public void verifyPopOutMessage(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        String text = String.valueOf(js.executeScript("document.elementFromPoint(380,70)"));
+        System.out.println(text); //TODO: cannot find working xpath, need help with this part, message: right top corner"Pipeline created'
     }
 
  public void deletePipeline(HashMap<String, String> data){
@@ -105,7 +107,12 @@ public class Deals extends HomePage {
             deletebtn.click();
         }
 
+
+
+
+
  }
+
 
 
 

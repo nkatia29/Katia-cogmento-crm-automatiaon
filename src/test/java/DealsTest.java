@@ -21,7 +21,21 @@ public class DealsTest extends BaseTest {
      deals.verifyBoardBtn();
      deals.DragAndDrop(data);
      deals.fillOutDealPipeline(data);
+     deals.verifyPopOutMessage();
      deals.deletePipeline(data);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  }
@@ -29,5 +43,6 @@ public class DealsTest extends BaseTest {
     public Object[][] getContactsData(){
         return new ExcelReader("src/main/resources/testData/CogmentoTestData.xlsx", "deals").getData();
     }
+
 
 }
