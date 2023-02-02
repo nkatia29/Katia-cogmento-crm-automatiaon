@@ -27,19 +27,6 @@ public class DealsTest extends BaseTest {
      deals.deletePipeline(data);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
  }
     @DataProvider(name = "deals")
     public Object[][] getContactsData(){

@@ -13,7 +13,7 @@ public class Contacts extends HomePage{
         super(driver, softAssert);
     }
 
-    @FindBy(xpath = "//button[text()='Save']")
+    @FindBy(xpath = "(//button[normalize-space()='Create'])[1]")
     protected WebElement createContactButton;
 
     @FindBy(name = "first_name")
@@ -146,8 +146,9 @@ public class Contacts extends HomePage{
 
     public void createContact(HashMap<String,String> data) {
         navigate("contacts");
-        softAssert.assertTrue(createContactButton.isEnabled(), "Create button is not enabled");
-        createContactButton.click();
+        driver.navigate().back();driver.navigate().forward();
+       softAssert.assertTrue(createContactButton.isEnabled(), "Create button is not enabled");
+       createContactButton.click();
 
         firstNameInput.sendKeys(data.get("firstname"));
         lastNameInput.sendKeys(data.get("lastname"));
@@ -218,8 +219,8 @@ public class Contacts extends HomePage{
 
         imagePathInput.sendKeys(data.get("imagePath"));
 
-        softAssert.assertTrue(createContactButton.isEnabled(), "Create Customer is not enabled");
-        createContactButton.click();
+        softAssert.assertTrue(saveCustomerBtn.isEnabled(), "save customer btn is not enabled");
+        saveCustomerBtn.click();
 
     }
 
