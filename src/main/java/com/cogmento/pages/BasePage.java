@@ -7,10 +7,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class BasePage {
 
-    protected WebDriver driver;
+    public static WebDriver driver;
     protected SoftAssert softAssert;
     protected WebDriverWait wait;
     protected Actions actions;
@@ -23,5 +25,7 @@ public class BasePage {
         PageFactory.initElements(driver, this);
 
     }
+
+
 
 }

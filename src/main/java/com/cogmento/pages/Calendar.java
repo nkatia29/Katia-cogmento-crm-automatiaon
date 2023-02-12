@@ -1,22 +1,12 @@
 package com.cogmento.pages;
 
-import com.cogmento.utils.CommonUtils;
-import dev.failsafe.function.CheckedRunnable;
-import org.jdesktop.swingx.JXDatePicker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.asserts.SoftAssert;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+
 
 import static com.cogmento.utils.CommonUtils.generalRandomNumber;
 

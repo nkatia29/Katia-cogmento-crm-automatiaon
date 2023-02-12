@@ -96,7 +96,7 @@ public class Deals extends HomePage {
     public void verifyPopOutMessage(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         String text = String.valueOf(js.executeScript("document.elementFromPoint(380,70)"));
-        System.out.println(text); //TODO: cannot find working xpath, need help with this part, message: right top corner"Pipeline created'
+        //try   try catch method
     }
 
  public void deletePipeline(HashMap<String, String> data){
