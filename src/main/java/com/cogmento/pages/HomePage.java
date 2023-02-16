@@ -11,6 +11,7 @@ import org.testng.asserts.SoftAssert;
 public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver, SoftAssert softAssert){
+
         super(driver, softAssert);
     }
 

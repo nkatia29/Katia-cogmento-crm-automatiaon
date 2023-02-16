@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 
 public class BasePage {
 
-    public static WebDriver driver;
+    protected  WebDriver driver;
     protected SoftAssert softAssert;
     protected WebDriverWait wait;
     protected Actions actions;
